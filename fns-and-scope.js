@@ -94,9 +94,7 @@ var name = 'Tyler';
   	'' (empty string)
 
 
-  	You would check if something is falsy by using a comparison operator:
-
-    something === false
+  	You would check by typing ![value] in the console. If it returns "true", the value is falsy.
 
 
 
