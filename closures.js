@@ -118,24 +118,25 @@ codeEcho();
 /*
   Now, similar to the last problem, write a function called 'fnCounter' that accepts two parameters. 
   The first parameter will be an anonymous function and the second parameter, 'N', will be a number. 
-  Now, in 'fnCounter', allow the anonymous funciton to be invoked 'N' number of times.
+  Now, in 'fnCounter', allow the anonymous function to be invoked 'N' number of times.
    After it's been invoked 'N' number of times, return 'STOP'.
 */
 
 
 function fnCounter(func, N) {
-  
+  var count = 0;
   return function(){
-    if (N > 0) {
-      count--;
+    if (count < N) {
+      count++;
       return func();
     }
+    else {
       return 'STOP';
-
+    }
   }
 }
 
-*********************************************************
+
 
 //Next Problem
 
@@ -168,22 +169,26 @@ function fnCounter(func, N) {
     //Answer Here
     My answer was wrong! :(
   
-  Fix the counter function so that it works the way you expect it to work. (logging 1 then 2 then 3, etc) (Note: No unit test for this one because of the timeout)
+  Fix the counter function so that it works the way you expect it to work. (logging 1 then 2 then 3, etc) 
+  (Note: No unit test for this one because of the timeout)
 */
 
     //Code Here
 
     function counter(){
-    for (var i=1; i<=5; i++) {
-      setTimeout(new Function('console.log( ' i );
-      }, i*1000 );
+    for (var i = 1; i <= 5; i++) {
+      setTimeout( (function(i) {
+        return function timer() {
+          console.log(i);
+        }
+      })(i), i * 1000 );
     }
   };
 
  counter();
 
 
-**********************************************************
+
 //Next Problem
 
 
@@ -204,3 +209,22 @@ function fnCounter(func, N) {
 */
 
 
+var funcArray = [];
+funcArray[0] = function() {
+  console.log(0);
+}
+funcArray[1] = function() {
+  console.log(1);
+}
+funcArray[2] = function() {
+  console.log(2);
+}
+funcArray[3] = function() {
+  console.log(3);
+}
+funcArray[4] = function() {
+  console.log(4);
+}
+funcArray[5] = function() {
+  console.log(5);
+}
