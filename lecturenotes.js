@@ -318,7 +318,7 @@ var y = x();          // The value produced is the return value of function inne
 
 Closures are functions that have been returned from other functions.
 What makes them magical: remember that functions can access variables that are in parent scopes,
-
+remembers the value of the functions even after the function is gone
 
 
 
@@ -354,3 +354,93 @@ var name3 = anotherInner();     // name3 is 'Bob';
 var name4 = inner();            // name4 is 'Jared';
 
 // Each time we invoke outer, we get a new version of inner
+
+
+
+
+
+
+
+
+
+&&&&&&&&EXAMPLE&&&&&&&&
+
+
+
+function multiplierFactory() {
+	function multiplier(multiplyBy, valueToMultiply) {
+		return multiplyBy * valueToMultiply;
+	}
+	return multiplier;
+}
+
+var mult = multiplierFactory();    //mult is the function multiplierFactory
+var product = mult(2, 3);
+console.log(product);       //result is 6
+
+product = mult(2, 4);
+console.log(product);      //result is 8
+
+function multiplierFactory(multiplyBy) {
+	function multiplier(valueToMultiply) {
+		return multiplyBy * valueToMultiply;
+	}
+	return multiplier;
+}
+
+var double = multiplierFactory(2);
+console.log(double(4));
+console.log(double(5));
+
+
+
+
+
+function myFunc() {
+	var num = 0;
+	return function() {
+		num++;
+		return num;
+	}
+}
+
+var numCount = myFunc();
+numCount();
+numCount();
+var num = numCount();
+
+
+
+
+
+
+Closure:
+
+
+//Fn -- put after variable name when variable is a function
+
+function counter() {
+	return function() {
+		console.log("Thanks for sticking in there!")
+	}
+}
+
+var whatAmIFn = counter();
+whatAmIFn();
+
+
+function counter(name) {
+	var name2 = name;
+	var happy = 3;
+	return function() {
+		happy++;
+		console.log("Thanks for sticking in there" + name2 + "! You are " + happy " happy points happy.")
+	}
+}
+
+var AndrewFn = counter("Andrew");
+var JasonFn = counter("Jason");
+
+AndrewFn();  //"Thanks for sticking in there Andrew"
+JasonFn();   //"Thanks for sticking in there Jason"
+
